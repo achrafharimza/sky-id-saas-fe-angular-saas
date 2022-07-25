@@ -1,0 +1,525 @@
+<div class="sky-identification-mobile-documentation mt-4">
+  <nz-tabset [nzTabPosition]="position">
+    <nz-tab nzTitle="Sky Face Analysis">
+      Sky IDentification (Sky ID) is a KYC (Know Your Customer) solution based on artificial intelligence and machine learning to identify your prospects or your customers on different digital channels.
+    </nz-tab>
+    <nz-tab nzTitle="SDK Integration">
+      <p>
+        L’intégration de la SDK Mobile avec l’application mobile du client se fait via l’appel seulement à deux  Activity <strong>sky_face_analyzer</strong>. Ces fonctionnalités gèrent :
+      </p>
+      <p class="mt-4 mb-2">
+       <strong>Sky Face Analysis (Face ID) :</strong> Easy integration, une seule Activity <strong>sky_face_analyzer</strong> à appeler pour :
+      </p>
+      <ul class=" list-inside list-disc">
+        <li>
+          La gestion de la communication avec le Core de Sky Identification (keys, cryptage, …) ;
+        </li>
+        <li>
+          L’analyse de l’environnement client(luminosité, reflet de lumière, ...) ;
+        </li>
+        <li>
+          La gestion  l'expérience utilisateur en temps réel ;
+        </li>
+        <li>
+          La détection automatique de la preuve de vie ;
+        </li>
+        <li>
+          La gestion de l’anti-fraude (Anti-spoofing) ;
+        </li>
+        <li>
+          La gestion de matching streaming avec le serveur <strong>Sky Deep Face Match</strong> ;
+        </li>
+        <li>
+          La gestion des codes retours ;
+        </li>
+      </ul>
+    </nz-tab>
+    <nz-tab nzTitle="Supported plateformes">
+      <nz-table #basicTable [nzData]="plateformes">
+        <thead>
+          <tr>
+            <th>Plateforme</th>
+            <th>Supported</th>
+            <th>Middleware Sky ID</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of basicTable.data">
+
+            <td><i nz-icon nzType="{{data.icon}}" nzTheme="outline"></i> {{ data.plateforme }}</td>
+            <td>{{ data.supported }}</td>
+            <td>
+              {{ data.middleware }}
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </nz-tab>
+    <nz-tab nzTitle="Android & Flutter">
+      <div class="h-700 overflow-y-scroll">
+        <p>
+          Similarly, the Sky Face Analysis component can be used simply by calling the FacebasedAuthenticator activity throughout a StartActivityForResult() method, see the following code :
+        </p>
+        <pre class=" bg-indatacoredark rounded text-indatacoregray mr-4 my-4">
+          {{SDA_af_Code1}}
+        </pre>
+        <p>
+          The FacebasedAuthenticator activity will open the camera, verify the liveness and the identity of the person holding the identity-document and return the verification result. In order to retrieve it, you may use the following code:
+        </p>
+        <pre class=" bg-indatacoredark rounded text-indatacoregray mr-4 my-4">
+          {{SDA_af_Code2}}
+        </pre>
+        <p>
+          The form of the response data is as follows:
+        </p>
+        <pre class=" bg-indatacoredark rounded text-indatacoregray mr-4 my-4" id="SDA_af_Code3">
+          {{SDA_af_Code3}}
+        </pre>
+  
+        <h3>a. Extra Settings</h3>
+        <p>SkyID can be configured with additional parameters at the moment of its call:</p>
+        <ol class=" list-inside list-disc">
+          <li>
+            configuration des couleurs des interfaces:
+            <pre class=" bg-indatacoredark rounded text-indatacoregray mr-4 my-4">
+              {{SDA_af_Code4}}
+            </pre>
+          </li>
+          <li>
+            Divers configurations
+            <pre class=" bg-indatacoredark rounded text-indatacoregray mr-4 my-4">
+              {{SDA_af_Code5}}
+            </pre>
+        </ol>
+        <h4>b. Dependencies of the SDK</h4>
+        <p>In order to avoid any error that can arise from the conflict between the SDK dependencies and the ones of the APK, you should add the following dependencies to your app's build.gradle file:</p>
+        <pre class=" bg-indatacoredark rounded text-indatacoregray mr-4 my-4">
+          {{SDA_af_Code6}}
+        </pre>
+  
+        <h4>c. Required Permissions by the SDK</h4>
+        <p>To ensure normal functioning of the SDK, make sure to ask the application users to grant the application the required permissions before calling the SDK activities. The three required permissions are :</p>
+        <ol class=" list-inside list-decimal">
+          <li>
+            “android.permission.CAMERA”
+          </li>
+          <li>
+            “android.permission.INTERNET”
+          </li>
+          <li>
+            “android.permission.READ_EXTERNAL_STORAGE”
+          </li>
+          <li>
+            “android.permission.WRITE_EXTERNAL_STORAGE”
+          </li>
+          <li>
+            “android.permission.READ_PHONE_STATE”
+          </li>
+        </ol>
+        <p>
+          And they can be asked from the user using the following code:
+        </p>
+        <pre class=" bg-indatacoredark rounded text-indatacoregray mr-4 my-4">
+          {{SDA_af_Code7}}
+        </pre>
+        <h4>d. Required Configurations by the SDK</h4>
+        <p>
+          In order to minimize the size of the SDK, the current version was released only for the "armeabi-v7a" & "arm64-v8a" ABIs which are the most widely supported ABIs on Android (About 90+% of all phones made in the last years supports this). Hence, in order to ensure normal functioning of the SDK together with your application, you should mention to gradle (in the build.gradle file) to build and package your APK using only the "armeabi-v7a" & "arm64-v8a" ABI:
+        </p>
+        <pre class=" bg-indatacoredark rounded text-indatacoregray mr-4 my-4">
+          {{SDA_af_Code8}}
+        </pre>
+  
+      <h4>e. ProGuard Configurations</h4>
+      <p>
+        If you are using ProGuard with SkyID SDK, you must add the following code to your ProGuard file:
+      </p>
+      <pre class=" bg-indatacoredark rounded text-indatacoregray mr-4 my-4">
+        {{SDA_af_Code9}}
+      </pre>
+      </div>
+    </nz-tab>
+    <nz-tab nzTitle="Ionic (Cordova)">
+      <div class="h-700 overflow-y-scroll">
+        <p>
+          In order to use SkyID SDK in your cross-platform projects, you must add the SkyID's sub-connector (cordova plugin) using the following commands:
+        </p>
+        <ol class="my-2 list-inside list-decimal">
+          <li>
+            Copy skyIDCodeName1Lib.cn1lib into the application project’s lib directory.
+          </li>
+          <li>
+            Refresh Cn1libs from the Codename One menu in the IDE.
+          </li>
+        </ol>
+        <p>
+          Once skyIDCodeName1Lib.cn1lib is successfully added to your project, you can use the Sky Document Analysis component as follows:
+        </p>
+        <pre class=" bg-indatacoredark rounded text-indatacoregray mr-4 my-4">
+          {{SDA_cordova_Code1}}
+        </pre>
+        <p>Similarly, the Sky Face Recognition component can be used using the following code :</p>
+        <pre class=" bg-indatacoredark rounded text-indatacoregray mr-4 my-4">
+          {{SDA_cordova_Code2}}
+        </pre>
+        <p>
+          The SkyIDCallback interface should be implemented and passed as parameter is composed of the following abstract methods:
+        </p>
+        <pre class=" bg-indatacoredark rounded text-indatacoregray mr-4 my-4">
+          {{SDA_cordova_Code3}}
+        </pre>
+      </div>
+    </nz-tab>
+    <nz-tab nzTitle="React Native">
+      <div class="h-700 overflow-y-scroll">
+        <div class="text-xl font-medium mb-4">A. SkyID SDK Installation</div>
+      <ol class="list-inside list-decimal">
+        <li>
+          <strong>Add SkyID SDK dependencies: </strong>
+          <p class=" mt-2">
+            In order to avoid any error that can arise from the conflict between the SDK dependencies and the ones of your application, you should add the following dependencies to your app's build.gradle file (android sub project of your react native project):
+          </p>
+          <pre class=" bg-indatacoredark rounded text-indatacoregray mr-4 mt-4 mb-8">
+            {{SDA_rn_Code1}}
+          </pre>
+        </li>
+        <li >
+          <strong>Build and package your APK using the "armeabi-v7a" & "arm64-v8a" ABI only : </strong>
+          <p class="mt-2">
+            In order to minimize the size of the SDK, the current version was released only for the "armeabi-v7a" & "arm64-v8a" ABIs which are the most widely supported ABIs on Android (About 90+% of all phones made in the last years supports this). Hence, in order to ensure normal functioning of the SDK together with your application, you should mention to gradle (in the build.gradle file) to build and package your APK using the "armeabi-v7a" & "arm64-v8a" ABIs :
+          </p>
+          <pre class=" bg-indatacoredark rounded text-indatacoregray mr-4 mt-4 mb-8">
+            {{SDA_rn_Code2}}
+          </pre>
+        </li>
+        <li>
+          <strong>Add SkyID SDK to your project :</strong>
+          <p class="mt-2">
+            Copy the SkyID SDK into the libs folder (android/app/libs) and add it to the dependencies section of your android project :
+          </p>
+          <pre class=" bg-indatacoredark rounded text-indatacoregray mr-4 my-4">
+            {{SDA_rn_Code3}}
+          </pre>
+        </li>
+        <li>
+          <strong>Add SkyIDModule & SkyIDPackage Classes to java source folder of android platform of your react native project:</strong>
+          <pre class=" bg-indatacoredark rounded text-indatacoregray mr-4 my-4">
+            {{SDA_rn_Code4}}
+          </pre>
+        </li>
+        <li>
+          <strong>Register SkyIDPackage in your main MainApplication class: This happens by adding an instance of SkyIDPackage to the returned packages of getPackages() method:</strong>
+          <pre class=" bg-indatacoredark rounded text-indatacoregray mr-4 my-4">
+            {{SDA_rn_Code5}}
+          </pre>
+        </li>
+
+        <li>
+          <strong>Copy SkyIDNative.js file into the same folder as the App.js file of your react native project:</strong>
+        </li>
+      </ol>
+      <div class="text-xl font-medium my-4">B. SkyID SDK Usage</div>
+      <p class="my-2">
+        Once SkyID SDK is added successfully to your project, you can use the Sky Document Analysis component as follows:
+      </p>
+      <pre class=" bg-indatacoredark rounded text-indatacoregray mr-4 my-4">
+        {{SDA_rn_Code6}}
+      </pre>
+      <p class="my-2">
+        The successCallback & Callback errorCallback are of the following form:
+      </p>
+      <pre class=" bg-indatacoredark rounded text-indatacoregray mr-4 my-4">
+        {{SDA_rn_Code7}}
+      </pre>
+      <p class="my-2">
+        The form of the SDK's responses (SuccessResponseArgs & ErrorResponseArgs) are respectively as follows:
+      </p>
+      <pre class=" bg-indatacoredark rounded text-indatacoregray mr-4 my-4">
+        {{SDA_rn_Code8}}
+      </pre>
+      <p class="my-2">
+        Similarly, the Sky Face Recognition component can be used using the following code :
+      </p>
+      <pre class=" bg-indatacoredark rounded text-indatacoregray mr-4 my-4">
+        {{SDA_rn_Code9}}
+      </pre>
+      <p class="my-2">
+        The successCallback & Callback errorCallback are of the following form:
+      </p>
+      <pre class=" bg-indatacoredark rounded text-indatacoregray mr-4 my-4">
+        {{SDA_rn_Code10}}
+      </pre>
+      <p class="my-2">
+        The form of the SDK's responses (SuccessResponseArgs & ErrorResponseArgs) are respectively as follows:
+      </p>
+      <pre class=" bg-indatacoredark rounded text-indatacoregray mr-4 my-4">
+        {{SDA_rn_Code11}}
+      </pre>
+      </div>
+    </nz-tab>
+    <nz-tab nzTitle=" IOS xcode">
+      <div class="h-700 overflow-y-scroll">
+        <ol class="list-inside list-decimal">
+          <li>
+            <strong>add skyID SDK to your project frameworks:</strong>
+            <img src="../../../assets/images/ios1.png" alt="">
+            <p>
+              In the project app target build setting, go to framework search path and add the path to SkyID_dependencies
+            </p>
+          </li>
+          <li class="mt-4">
+            <strong>import skyID SDK :</strong>
+            <pre class="bg-indatacoredark rounded text-indatacoregray mr-4 pt-4 my-4">
+  import SkyIdSDK
+            </pre>
+          </li>
+          <li>
+            <strong>setup skyID SDK with your token in AppDelegate:</strong>
+            <pre class="bg-indatacoredark rounded text-indatacoregray mr-4 pt-4 my-4">
+  SkyIdConfigure.shared.setup(With: [myToken])
+            </pre>
+          </li>
+          <li>
+            <strong>Configure  skyID SDK:</strong>
+            <p>
+              enable provided service Id configuration before launching SDK.
+            </p>
+            <pre class="bg-indatacoredark rounded text-indatacoregray mr-4 pt-4 my-4">
+              {{SDA_ios_Code1}}
+            </pre>
+            <p><strong>isConfigured :</strong> describe if the sdk is configured with success</p>
+            <p><strong>error :</strong> return an Error object if occurred</p>
+          </li>
+          <li>
+            <strong>generate  skyID SDK process  guide :</strong>
+            <pre class="bg-indatacoredark rounded text-indatacoregray mr-4 pt-4 my-4">
+  var SdkGuide = SkyIdConfigure.shared.generateSkyIdGuide()
+            </pre>
+          </li>
+          <li>
+            <strong>SkyID SDK Builder:</strong>
+            <p>
+              <strong>SkyIdBuilder : </strong>object factory for Document Analysis and Face Recognition products.
+            </p>
+            <p>
+              <strong>protocols : </strong>SkyIdBuilderDelegate captures any build error.
+            </p>
+            <span>Method to implement :</span>
+            <pre class="bg-indatacoredark rounded text-indatacoregray mr-4 my-4">
+              {{SDA_ios_Code2}}
+            </pre>
+            <p>
+              the SkyIdBuilder is a singleton factory class enable to build and configure SkyID services by calling the instance SkyIdBuilder.shared. there are three main build method :
+            </p>
+            <ul class="list-inside list-disc">
+              <li>getDocAnalysisInstance</li>
+              <li>getNFCScannerInstance</li>
+              <li>getFaceRecInstance</li>
+            </ul>
+            <p>
+              the builder returns an instance of the service controller if the service is well configured, otherwise returns nil object with an error prompt in the didBuildWithError  overridden method.
+            </p>
+            <p>
+              In the following the description of the three  service instances.
+            </p>
+          </li>
+        </ol>
+
+        <div>
+          <span class="text-xl font-medium">A. Build and run SkyId sdk Document analysis</span>
+          <ol class=" list-inside list-decimal">
+            <li>
+              <span>input :</span>
+              <pre class="bg-indatacoredark rounded text-indatacoregray mr-4 my-4">
+  lang:String,guide:String
+              </pre>
+            </li>
+            <li>
+              <span>output :</span>
+              <p>
+                <strong>SkyIdDocAnalysisResult :</strong> object result for skyId SDK Document analysis contain :             
+              </p>
+              <pre class="bg-indatacoredark rounded text-indatacoregray mr-4 my-4">
+                {{SDA_ios_Code3}}
+              </pre>
+            </li>
+            <li>
+              <span>protocole :</span>
+              <p>
+                <strong>SkyDocumentsAnalyzerResultReadyDelegate :</strong> Delegate document scan end result.
+              </p>
+              <span>Method to implement :</span>
+              <pre class="bg-indatacoredark rounded text-indatacoregray mr-4 my-4">
+                {{SDA_ios_Code4}}
+              </pre>
+            </li>
+            <li>
+              <span>show Document Analysis scan canvas :</span>
+              <pre class="bg-indatacoredark rounded text-indatacoregray mr-4 my-4">
+                {{SDA_ios_Code5}}
+              </pre>
+            </li>
+          </ol>
+        </div>
+        <div>
+          <span class="text-xl font-medium">B. run SkyId sdk NFC Scan</span>
+          <ol class=" list-inside list-decimal">
+            <li>
+              <span>Application target configurations :</span>
+              <ul class=" list-inside list-disc">
+                <li>
+                  <span>
+                    in the application target signing & capabilities, enable NFC usage :
+                  </span>
+                  <img src="../../../assets/images/ios2.png" alt="">
+                  <p>
+                    an app_name.entitelements file is generated :
+                  </p>
+                  <img src="../../../assets/images/ios3.png" alt="">
+                </li>
+                <li>
+                  <span>
+                    in the application target info.plist, add nfc tag AID :
+                  </span>
+                  <p>
+                    ISO7816 application identifiers for NFC Tag Reader Session
+                  </p>
+                  <span>
+                    add two AID :
+                  </span>
+                  <ul class=" list-inside list-disc">
+                    <li>A0000002471001</li>
+                    <li>00000000000000</li>
+                  </ul>
+                  <img src="../../../assets/images/ios4.png" alt="">
+              </ul>
+            </li>
+            <li>
+              <span>input :</span>
+              <pre class="bg-indatacoredark rounded text-indatacoregray mr-4 my-4">
+  lang:String,guide:String,keyInfo:MRZKeyModel
+              </pre>
+              <p>
+                The MRZKeyModel object contains the MRZ key information required for the NFC reader. is composed of :
+              </p>
+              <ul class=" list-inside list-disc">
+                <li>documentNumber : the person's document number of passport or id card.</li>
+                <li>birthDate : the person's birth date with the format  yyMMdd.</li>
+                <li>expiryDate :  the person document expiry date with the format  yyMMdd.</li>
+              </ul>
+            </li>
+            <li>
+              <span>output :</span>
+              <pre class="bg-indatacoredark rounded text-indatacoregray mr-4 my-4">
+  SkyIdDocAnalysisResult
+              </pre>
+            </li>
+            <li>
+              <span>protocole :</span>
+              <p>
+                <strong>SkyNFCReaderResultReadyDelegate :</strong> Delegate NFC scan end result.
+              </p>
+              <span>Method to implement :</span>
+              <pre class="bg-indatacoredark rounded text-indatacoregray mr-4 my-4">
+                {{SDA_ios_Code6}}
+              </pre>
+            </li>
+            <li>
+              <span>show NFC scan canvas</span>
+              <pre class="bg-indatacoredark rounded text-indatacoregray mr-4 my-4">
+                {{SDA_ios_Code7}}
+              </pre>
+            </li>
+          </ol>
+        </div>
+        <div>
+          <span class="text-xl font-medium">C. run SkyId sdk Face Recognition</span>
+          <ol class=" list-inside list-decimal">
+            <li>
+              <span>input :</span>
+              <pre class="bg-indatacoredark rounded text-indatacoregray mr-4 my-4">
+  documentPhotos:[String:[skyIdFacePhoto]], lang:String, guide:String
+              </pre>
+              <p>
+                The <strong>documentPhotos</strong> is a dictionary that lists for each Document_id a list of captured person face images in the document. for example :
+              </p>
+              <pre class="bg-indatacoredark rounded text-indatacoregray mr-4 my-4">
+                {{SDA_ios_Code8}}
+              </pre>
+            </li>
+            <li>
+              <span>output :</span>
+              <p>
+                <strong>SkyIdFaceRecResult :</strong> object result for skyId SDK Face Recognition
+              </p>
+              <pre class="bg-indatacoredark rounded text-indatacoregray mr-4 my-4">
+                {{SDA_ios_Code9}}
+              </pre>
+            </li>
+            <li>
+              <span>protocole :</span>
+              <p>
+                <strong>SkyFaceRecognitionResultReadyDelegate :</strong> Delegate Face Recognition end result.
+              </p>
+              <span>Method to implement :</span>
+              <pre class="bg-indatacoredark rounded text-indatacoregray mr-4 my-4">
+                {{SDA_ios_Code10}}
+              </pre>
+            </li>
+            <li>
+              <span>show Face analysis canvas</span>
+              <pre class="bg-indatacoredark rounded text-indatacoregray mr-4 my-4">
+                {{SDA_ios_Code11}}
+              </pre>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </nz-tab>
+    <nz-tab nzTitle="Annexes">
+     <div class="h-700 overflow-y-scroll">
+      <div>
+        <span class="text-xl font-medium mb-4">Status code Sky IDentification</span>
+        <nz-table #basicTables [nzData]="statusCode">
+          <thead>
+            <tr>
+              <th>Status Code</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of basicTables.data">
+  
+              <td>{{ data.status}}</td>
+              <td>
+                {{ data.discription}}
+              </td>
+            </tr>
+          </tbody>
+        </nz-table>
+      </div>
+
+      <div>
+        <span class="text-xl font-medium mb-4">Labels des informations extraites par SkyID</span>
+        <nz-table #basicTabless [nzData]="Labels">
+          <thead>
+            <tr>
+              <th>Label</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of basicTabless.data">
+  
+              <td>{{ data.label}}</td>
+              <td>
+                {{ data.value}}
+              </td>
+            </tr>
+          </tbody>
+        </nz-table>
+      </div>
+     </div>
+    </nz-tab>
+  </nz-tabset>
+</div>

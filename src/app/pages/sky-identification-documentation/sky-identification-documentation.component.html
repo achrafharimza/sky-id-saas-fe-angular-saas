@@ -1,0 +1,163 @@
+<div class="mt-6">
+  <nz-tabset [nzTabPosition]="position">
+    <nz-tab nzTitle="SDK Web Sky IDentification" class="">
+      <p class="mb-2">
+        La SDK Web permettant de communiquer en mode streaming avec le système d'identification faciale <strong>Sky Deep Face Match</strong>  en comparant plusieurs photos apposée sur la pièce d'identité prises via l'OCR Streaming et plusieurs photos (selfie) prises via la vidéo streaming afin de s'assurer l'opération KYC en s'assurant que le détenteur de la pièce d'identité est le même que la personne qui est devant la caméra en train de faire KYC, il y a plusieurs niveaux :
+      </p>
+      <ul class=" list-inside list-disc">
+        <li><span class="font-medium">Level 1 :</span> Matching document VS selfie</li>
+        <li><span class="font-medium">Level 2 :</span> Matching document VS video streaming</li>
+        <li><span class="font-medium">Level 3 :</span> Matching video ID Card Streaming VS video Faciale streaming</li>
+      </ul>
+    </nz-tab>
+    <nz-tab nzTitle="Browser supported">
+      <!-- Browser supported on Desktop -->
+
+      <nz-descriptions nzTitle="" nzBordered nzLayout="vertical">
+
+        <!-- <nz-descriptions-item nzTitle="Usage Time" [nzSpan]="2">
+          2018-04-24 18:00:00 To 2019-04-24 18:00:00
+        </nz-descriptions-item> -->
+        <nz-descriptions-item nzTitle="Browser supported on Desktop" [nzSpan]="3">
+          Safari, JS ES6 => 13 (IOS 11 or more)
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Opera, JS ES6 => 66" [nzSpan]="3">Firefox, JS ES6 => 68</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Microsoft Edge, JS ES6 => 17">Chrome, JS ES6 => 77</nz-descriptions-item>
+        <!-- <nz-descriptions-item nzTitle="Safari, JS ES6 => 13 (IOS 11 or more)">YES</nz-descriptions-item> -->
+        <!-- <nz-descriptions-item nzTitle="Automatic Renewal">YES</nz-descriptions-item> -->
+      </nz-descriptions>
+    </nz-tab>
+    <nz-tab nzTitle="Intégration">
+      <div class="h-700 overflow-y-scroll">
+        <p>
+          The SkyID WEB SDK enables your app to analyze, liveness verification and face matching  using biometrics based solutions.
+        </p>
+        <h4 class="text-lg font-medium">Web SDK files :</h4>
+        <ul class=" list-outside list-disc">
+          <li>
+            <strong>skyid_fa_sdk-min.js :</strong> javascript module of sky face analysis, contain two APIs :
+            <ul class=" list-inside list-disc">
+              <li><strong>skyid_fa_setup_sdk :</strong> enable loading and initializing sdk components(webcam, engines, elements positioning).</li>
+            </ul>
+          </li>
+          <li>
+            <strong>skyid_fa_start_face_scan :</strong> run face detection and liveness check.
+          </li>
+          <li>
+            <strong>skyid_fa_sdk_bundles.js :</strong> javascript file for editing SDK messages or html elements IDs.
+        </ul>
+        <span class="my-2">dependance : jquery, tfjs.</span>
+        <p>Plus, HTML components to push in your web page (see project demo).</p>
+        <h4 class="text-lg font-medium my-2">Web SDK APIs implementations :</h4>
+        <ol class=" list-outside list-decimal">
+          <li>
+            Setup SDKs, you need to provide the token and application id :
+            <pre class=" bg-indatacoredark rounded text-indatacoregray mr-4 my-4 pt-3">
+  const skyid_fa_sdk_token = "***************************************************";
+  const skyid_fa_sdk_appId = "aa.aa.aaa";
+  skyid_fa_setup_sdk(skyid_fa_sdk_token, skyid_fa_sdk_appId);
+            </pre>
+          </li>
+          <li>
+            Running face scan, the API  skyid_fa_start_face_scan  prend en parametre two function callbacks:
+            <ul class="list-inside list-disc my-2 ">
+              <li>
+                skyid_fa_end_api_check_callback : triggered when the SDK returns Liveness check from the skyid API. two data parameters is returned :
+                <ul class="list-inside list-disc my-2 ml-2">
+                  <li>
+                    skyid_fa_selected_frame : a canvas of the user selfie.
+                  </li>
+                  <li>
+                    skyid_fa_response_dict :   contain the liveness check response, is a dictionary of :
+                    <ol class="list-inside list-decimal my-2 ml-2">
+                      <li>
+                        <strong>status_code :</strong> the api status code, 000:success otherwise is an error described in status label.
+                      </li>
+                      <li>
+                      <strong>status_label :</strong> a text describing the API response.
+                      </li>
+                      <li>
+                      <strong>class :</strong> contain reel : live face, spoof: attack, None: api error.
+                      </li>
+                      <li>
+                      <strong>score :</strong> the liveness checks confidence.
+                      </li>
+                    </ol>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                skyid_fa_end_with_spoof_callback : triggered when the SDK does not detect a live face in the browser.
+              </li>
+            </ul>
+          </li>
+        </ol>
+        <h4 class="text-lg font-medium my-2">Example :</h4>
+        <pre class="bg-indatacoredark rounded text-indatacoregray mr-4 my-4 pt-3">
+          {{code}}
+        </pre>
+      </div>
+    </nz-tab>
+    <!-- <nz-tab nzTitle="Face matching API Intégration">
+      <p>
+        This is an API REST standard (post method), below input and output parameters :
+      </p>
+      <h4>Input params</h4>
+      <nz-table #basicTable [nzData]="listOfData">
+        <thead>
+          <tr>
+            <th>Key</th>
+            <th>Type</th>
+            <th>Mandatory</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of basicTable.data">
+            <td>{{ data.key }}</td>
+            <td>{{ data.type }}</td>
+            <td>{{ data.Mandatorye }}</td>
+            <td>
+              {{ data.Description }}
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+      <h4>Output params</h4>
+      <nz-table #basicTable1 [nzData]="listOfData1">
+        <thead>
+          <tr>
+            <th>Key</th>
+            <th>Type / Attribut</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of basicTable1.data">
+            <td>{{ data.key }}</td>
+            <td>{{ data.type }}</td>
+            <td>
+              {{ data.Description }}
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+
+    </nz-tab>
+    <nz-tab nzTitle="Exemple face matching API">
+      <pre>
+        {{example2}}
+      </pre>
+      <h4>Output :</h4>
+      <pre>
+        {{output | json}}
+      </pre>
+    </nz-tab> -->
+    <!-- <nz-tab nzTitle="Annexs">
+      <h4>Send Canvas as binary file</h4>
+      <pre>
+        {{annexs}}
+      </pre> -->
+    <!-- </nz-tab> -->
+  </nz-tabset>
+</div>

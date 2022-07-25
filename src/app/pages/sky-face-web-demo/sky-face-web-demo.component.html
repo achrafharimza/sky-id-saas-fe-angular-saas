@@ -1,0 +1,35 @@
+<div class="mt-4" *ngIf="!showWebcam">
+    <nz-alert
+    nzType="warning"
+    nzMessage="Important"
+    nzDescription="use your camera to take a picture of your face and then submit it to the server to Sky face analsis to see if you are a real person"
+    nzShowIcon
+  ></nz-alert>
+  <label class="my-3" nz-checkbox [(ngModel)]="checked">I grant permission for Camera</label>
+  <div>
+    <button *ngIf="!checked" disabled nz-button nzType="default">show image</button>
+    <button *ngIf="checked" (click)="showImage()" nz-button nzType="default">show image</button>
+  </div>
+</div>
+<div class="flex justify-center mt-4">
+    
+    
+    <div *ngIf="!result_score" id="liveness" class="w-fit">
+    </div>
+    <!-- *ngIf="result_score" -->
+    <div *ngIf="result_score" class="w-80 shadow p-3 mt-4">
+        <div class="text-xl font-medium">Result :</div>
+        <div class="w-full flex justify-center">
+            <nz-progress *ngIf="check_true" [nzPercent]="100" nzType="circle"></nz-progress>
+            <nz-progress *ngIf="check_false" [nzPercent]="100" nzType="circle" nzStatus="exception"></nz-progress>
+        </div>
+        <!-- *ngIf="check_false" -->
+        
+        <div *ngIf="result_score" class="flex justify-between">
+            <div><span class="text-lg font-normal">Score :</span>{{result_score}}</div>
+            <div><span class="text-lg font-normal">Class :</span>{{result_class}}</div>  
+        </div>
+    </div>
+
+
+</div>

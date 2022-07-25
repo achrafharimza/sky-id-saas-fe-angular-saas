@@ -1,0 +1,18 @@
+<nz-layout class="inner-layout">
+  <ul nz-menu nzMode="horizontal">
+    <li nz-menu-item nzMatchRouter>
+    <a routerLinkActive="active" routerLink="web">Web</a>
+    </li>
+    <li nz-menu-item nzMatchRouter>
+    <a routerLinkActive="active" routerLink="api" >API</a>
+    </li>
+    <li nz-menu-item nzMatchRouter>
+    <a routerLinkActive="active" routerLink="mobile" >Mobile</a>
+    </li>
+    </ul>
+    <!-- </nz-sider> -->
+    <nz-content class="inner-content bg-white">
+      <router-outlet></router-outlet>
+      <!-- <app-sky-identification></app-sky-identification> -->
+    </nz-content>
+  </nz-layout>

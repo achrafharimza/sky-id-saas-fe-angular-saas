@@ -1,0 +1,107 @@
+<nz-layout class="app-layout">
+  <nz-sider class="side-bar" nzWidth="256px" nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+    <div class="sidebar-logo">
+        <img src="assets/images/Indatacore.png" alt="logo">
+        <h1 class="title-logo"><span class="in">In</span>data<span class="core">core</span></h1>
+    </div>
+    <ul nz-menu class="menu" nzTheme="dark" nzMode="inline" >
+      <li nz-menu-item class="list-hover" routerLink="home" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+        <i nz-icon nzType="dashboard"></i>
+        <span>Dashboard</span>
+      </li>
+
+      <li nz-submenu nzTitle="Session" nzIcon="history"  [(nzOpen)]="openMap.sub1"
+      (nzOpenChange)="openHandler('sub1')">
+        <ul>
+          <li nz-menu-item routerLink="session/skyident" routerLinkActive="active">Sky IDentification</li>
+          <li  nz-menu-item  routerLink="session/skydoc" routerLinkActive="active">Sky Document Analysis</li>
+          <li  nz-menu-item  routerLink="session/skyface" routerLinkActive="active">Sky Face Analysis</li>
+          <li nz-menu-item>Sky OnBoarding</li>
+          <li nz-menu-item>Sky Document Compilance</li>
+          <li nz-menu-item>Sky Bank Check</li>
+          <li nz-menu-item>Sky Signature</li>
+        </ul>
+      </li>
+
+
+      <li nz-submenu nzTitle="Demo" nzIcon="control"  [(nzOpen)]="openMap.sub2"
+      (nzOpenChange)="openHandler('sub2')">
+        <ul>
+      
+      <li nz-menu-item routerLink="skyident" routerLinkActive="active">Sky IDentification</li>
+      <li  nz-menu-item  routerLink="skydoc" routerLinkActive="active">Sky Document Analysis</li>
+      <li  nz-menu-item  routerLink="skyface" routerLinkActive="active">Sky Face Analysis</li>
+      <li nz-menu-item>Sky OnBoarding</li>
+      <li nz-menu-item>Sky Document Compilance</li>
+      <li nz-menu-item>Sky Bank Check</li>
+      <li nz-menu-item>Sky Signature</li>
+        </ul>
+      </li>
+      <!-- <li nz-submenu nzTitle="Mobile" nzIcon="mobile">
+        <ul>
+          <li nz-menu-item routerLink="/android">Android</li>
+          <li nz-menu-item routerLink="/ios">IOS</li>
+          <li nz-menu-item routerLink="/flutter">flutter</li>
+        </ul>
+      </li> -->
+
+      <li nz-submenu nzTitle="Documentation" nzIcon="file"  [(nzOpen)]="openMap.sub3"
+      (nzOpenChange)="openHandler('sub3')">
+        <ul>
+          <li nz-menu-item routerLink="documentation/skyident" routerLinkActive="active">Sky IDentification</li>
+          <li  nz-menu-item  routerLink="documentation/skydoc" routerLinkActive="active">Sky Document Analysis</li>
+          <li  nz-menu-item  routerLink="documentation/skyface" routerLinkActive="active">Sky Face Analysis</li>
+          <li nz-menu-item>Sky OnBoarding</li>
+          <li nz-menu-item>Sky Document Compilance</li>
+          <li nz-menu-item>Sky Bank Check</li>
+          <li nz-menu-item>Sky Signature</li>
+        </ul>
+      </li>
+ 
+      <li nz-submenu nzTitle="Users" nzIcon="user"  [(nzOpen)]="openMap.sub4"
+      (nzOpenChange)="openHandler('sub4')">
+        <ul>
+          <li nz-menu-item class="list-hover" routerLink="gestion/usersadd" routerLinkActive="active">Add User</li>
+          <li nz-menu-item class="list-hover" routerLink="gestion/users" routerLinkActive="active" >Users</li>
+        
+        </ul>
+      </li>
+      <li nz-menu-item>
+        <i nz-icon nzType="setting"></i>
+        <span>Setting</span>
+      </li>
+      <li  nz-menu-item routerLinkActive="active" class="active-pro " (click)="logout()">
+        <i nz-icon nzType="logout" ></i>
+        <span>Logout</span>
+    </li>
+    </ul>
+  </nz-sider>
+  <nz-layout class="right-layout">
+    <nz-header>
+     
+      <nz-row [nzJustify]="'space-between'"> 
+  
+
+       <div ><i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'" (click)="isCollapsed = !isCollapsed"></i></div> 
+       <div class="current-user">
+        <i nz-icon nzType="user" nzTheme="outline"></i>
+        <span>{{currentuser.sub}}</span>
+        
+        <!-- <i nz-icon nzType="logout" nzTheme="outline" (click)="logout()"></i> -->
+      </div> 
+      
+      </nz-row>
+     
+    </nz-header>
+    <nz-content>
+      <nz-breadcrumb>
+        <!-- <nz-breadcrumb-item>User</nz-breadcrumb-item>
+        <nz-breadcrumb-item>BillO</nz-breadcrumb-item> -->
+      </nz-breadcrumb>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+    <!-- <nz-footer>indatacore ©2022</nz-footer> -->
+  </nz-layout>
+</nz-layout>

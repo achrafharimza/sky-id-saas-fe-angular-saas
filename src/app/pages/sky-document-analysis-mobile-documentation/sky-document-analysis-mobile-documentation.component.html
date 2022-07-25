@@ -1,0 +1,101 @@
+<div class="mt-6">
+  <nz-tabset [nzTabPosition]="position">
+    <nz-tab nzTitle="SDK Sky Document analysis" class="">
+      <p>
+        L’intégration de la SDK Mobile avec l’application mobile du client se fait via l’appel seulement à deux  Activity  <strong>sky_document_analyzer</strong>. Ces fonctionnalités gèrent :
+      </p>
+      <p class="mt-4 mb-2">
+       <strong>Sky Document Analysis (Smart OCR) :</strong> Easy integration, une seule Activity <strong>sky_document_analyzer</strong> à appeler pour :
+      </p>
+      
+      <ul class=" list-inside list-disc">
+        <li>
+          La gestion de la communication avec le Core de Sky Identification (keys, cryptage, …) ;
+        </li>
+        <li>
+          L’analyse de l’environnement client(luminosité, reflet de lumière, ...) ;
+        </li>
+        <li>
+          La gestion  l'expérience utilisateur en temps réel ;
+        </li>
+        <li>
+          L’analyse de plusieurs frames par secondes (Mode streaming) pour sélectionner les meilleures images;
+        </li>
+        <li>
+          La détection automatique du ng-star-inser-star-inserocument ;
+        </li>
+        <li>
+          La vérification de la pièce d'identité ;
+        </li>
+        <li>
+          La gestion de l’OCR Streaming ;
+        </li>
+        <li>
+          Contrôler recto et verso ;
+        </li>
+        <li>
+          Contrôler l'intégrité de la pièce d'identité ;
+        </li>
+        <li>
+          Le Pré processing des images sélectionnées ;
+        </li>
+        <li>
+          Le Post processing des différents résultats obtenus ;
+        </li>
+        <li>
+          La validation des seuils et le choix du meilleur résultat d'OCÉRisation par champ et par algorithme, …
+        </li>
+        <li>
+          Le regroupement et formatage du résultat obtenu sous forme du Json ;
+        </li>
+        <li>La gestion des codes retours ;</li>
+      </ul>
+    </nz-tab>
+    <nz-tab nzTitle="Supported plateformes">
+      <nz-table #basicTable [nzData]="plateformes">
+        <thead>
+          <tr>
+            <th>Plateforme</th>
+            <th>Supported</th>
+            <th>Middleware Sky ID</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of basicTable.data">
+
+            <td><i nz-icon nzType="{{data.icon}}" nzTheme="outline"></i> {{ data.plateforme }}</td>
+            <td>{{ data.supported }}</td>
+            <td>
+              {{ data.middleware }}
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </nz-tab>
+    <nz-tab nzTitle="Android & Flutter" class="">
+      <div class="h-700 overflow-y-scroll">
+        <p>
+          The Sky Document Analysis component can be used simply by calling the DocumentAnalyzer activity throughout a StartActivityForResult() method, see the following code :
+        </p>
+        <pre class=" bg-indatacoredark rounded text-indatacoregray mr-4 my-4">
+          {{SDA_af_Code1}}
+        </pre>
+        <p>
+          with service_id being a string with a value from the section “Documents activated p 9”.
+        </p>
+        <p>
+          The DocumentAnalyzer activity will open the camera, ocerize the document in real time and, finally, return the extracted data. To retrieve it, you may use the following code :
+        </p>
+        <pre class=" bg-indatacoredark rounded text-indatacoregray mr-4 my-4">
+          {{SDA_af_Code2}}
+        </pre>
+        <p>
+          The form of the response data is as follows :
+        </p>
+        <pre class=" bg-indatacoredark rounded text-indatacoregray mr-4 my-4">
+          {{SDA_af_Code3}}
+        </pre>
+      </div>
+    </nz-tab>
+  </nz-tabset>
+</div>

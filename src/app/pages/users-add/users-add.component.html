@@ -1,0 +1,245 @@
+<!-- <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzRequired>nom</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
+        <input nz-input formControlName="nom" placeholder="async validate try to write JasonWood" value="indatacore" />
+        <ng-template #userErrorTpl let-control>
+          <ng-container *ngIf="control.hasError('required')">Please input your nom!</ng-container>
+          <ng-container *ngIf="control.hasError('duplicated')">The nom is redundant!</ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>prenom</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
+          <input nz-input formControlName="prenom" placeholder="async validate try to write JasonWood" value="indatacore"/>
+          <ng-template #userErrorTpl let-control>
+            <ng-container *ngIf="control.hasError('required')">Please input your prenom!</ng-container>
+            <ng-container *ngIf="control.hasError('duplicated')">The prenom is redundant!</ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzRequired>E-mail</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzHasFeedback [nzErrorTip]="emailErrorTpl">
+        <input nz-input formControlName="email" placeholder="email" type="email" />
+        <ng-template #emailErrorTpl let-control>
+          <ng-container *ngIf="control.hasError('email')">The input is not valid E-mail!</ng-container>
+          <ng-container *ngIf="control.hasError('required')">Please input your E-mail!</ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzRequired>Password</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzHasFeedback nzErrorTip="Please input your password!">
+        <input nz-input type="password" formControlName="password" (ngModelChange)="validateConfirmPassword()" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzRequired>Confirm Password</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzHasFeedback [nzErrorTip]="passwordErrorTpl">
+        <input nz-input type="password" formControlName="confirm" placeholder="confirm your password" value="indatacore" />
+        <ng-template #passwordErrorTpl let-control>
+          <ng-container *ngIf="control.hasError('required')">Please confirm your password!</ng-container>
+          <ng-container *ngIf="control.hasError('confirm')">Password is inconsistent!</ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="5" nzFor="clientID" nzRequired>clientID</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzErrorTip="Please select your clientID!">
+          <nz-select
+            id="clientID"
+            formControlName="clientID"
+            nzPlaceHolder="Select a option and change input text above">
+
+            <nz-option *ngFor="let c of clientList" [nzValue]="c.id" [nzLabel]="c.nom"></nz-option>
+
+            
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="5" nzFor="isadmin" nzRequired>isadmin</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzErrorTip="Please select your isadmin!">
+          <nz-select
+            id="isadmin"
+            formControlName="isadmin"
+            nzPlaceHolder="Select a option and change input text above">
+            <nz-option nzValue=true nzLabel=true></nz-option>
+            <nz-option nzValue=false nzLabel=false></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="5" nzFor="isactive" nzRequired>isactive</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzErrorTip="Please select your isactive!">
+          <nz-select
+            id="isactive"
+            formControlName="isactive"
+            nzPlaceHolder="Select a option and change input text above">
+            <nz-option nzValue=true nzLabel=true></nz-option>
+            <nz-option nzValue=false nzLabel=false></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+
+
+
+    <nz-form-item>
+      <nz-form-control [nzOffset]="7" [nzSpan]="12">
+        <button nz-button nzType="primary" [disabled]="!validateForm.valid">Submit</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form> -->
+
+  <!-- END -->
+
+  <div class="mt-10 sm:mt-0">
+    <div class="md:grid md:grid-cols-3 md:gap-6">
+     
+      <div class="mt-5 md:mt-0 md:col-span-2">
+     
+        <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+          <div class="shadow-2xl overflow-hidden sm:rounded-md">
+            <div class="px-4 py-5 bg-white sm:p-6">
+              <div class="grid grid-cols-6 gap-6">
+                
+          
+
+                  <div class="col-span-6 sm:col-span-3">
+                    <nz-form-item>
+                    <label for="first-name" class="block text-sm font-medium text-gray-700">First name</label>
+                    <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
+                        <input nz-input formControlName="nom" type="text" name="first-name" id="first-name" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                        <ng-template #userErrorTpl let-control>
+                            <ng-container *ngIf="control.hasError('required')">Please input your nom!</ng-container>
+                            <ng-container *ngIf="control.hasError('duplicated')">The nom is redundant!</ng-container>
+                          </ng-template>
+                    </nz-form-control>
+                    </nz-form-item>
+                </div>
+  
+                <div class="col-span-6 sm:col-span-3">
+                    <nz-form-item>
+                  <label for="last-name" class="block text-sm font-medium text-gray-700">Last name</label>
+                  <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
+                    <input nz-input formControlName="prenom" type="text" name="last-name" id="last-name" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    <ng-template #userErrorTpl let-control>
+                        <ng-container *ngIf="control.hasError('required')">Please input your prenom!</ng-container>
+                        <ng-container *ngIf="control.hasError('duplicated')">The prenom is redundant!</ng-container>
+                      </ng-template>
+                    </nz-form-control>
+                </nz-form-item>
+                    </div>
+
+              
+
+
+
+  
+                <div class="col-span-6 sm:col-span-3">
+                    <nz-form-item>
+                  <label for="email-address" class="block text-sm font-medium text-gray-700">Email address</label>
+                  <nz-form-control [nzSpan]="12" nzHasFeedback [nzErrorTip]="emailErrorTpl">
+                  <input nz-input formControlName="email" type="text" name="email-address" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                  <ng-template #emailErrorTpl let-control>
+                    <ng-container *ngIf="control.hasError('email')">The input is not valid E-mail!</ng-container>
+                    <ng-container *ngIf="control.hasError('required')">Please input your E-mail!</ng-container>
+                  </ng-template>
+                </nz-form-control>
+
+            </nz-form-item>
+                </div>
+                <div class="col-span-6 sm:col-span-2">
+                    <label for="clientID" class="block text-sm font-medium text-gray-700">Client</label>
+                    <select id="clientID" formControlName="clientID"  autocomplete="country-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        <option value=""  selected hidden>Select Client</option>
+                      <option *ngFor="let f of clientList" [ngValue]="f.id">{{f.nom}}  </option>
+  
+                    </select>
+                  </div>
+
+
+                <div class="col-span-6 sm:col-span-3">
+                    <nz-form-item>
+                  <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                  <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
+                    <input nz-input formControlName="password" type="password" name="password" id="password" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    </nz-form-control>
+                </nz-form-item>
+                    </div>
+
+                    <div class="col-span-6 sm:col-span-3">
+                        <nz-form-item>
+                      <label for="confirm" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+                      <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="passwordErrorTpl">
+                        <input nz-input formControlName="confirm" type="password" name="confirm" id="confirm" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                        <ng-template #passwordErrorTpl let-control>
+                            <ng-container *ngIf="control.hasError('required')">Please confirm your password!</ng-container>
+                            <ng-container *ngIf="control.hasError('confirm')">Password is inconsistent!</ng-container>
+                          </ng-template>   
+                    </nz-form-control>
+                    </nz-form-item>
+                        </div>
+
+
+                        <!-- <nz-form-item>
+                            <nz-form-label [nzSpan]="7" nzRequired>Confirm Password</nz-form-label>
+                            <nz-form-control [nzSpan]="12" nzHasFeedback [nzErrorTip]="passwordErrorTpl">
+                              <input nz-input type="password" formControlName="confirm" placeholder="confirm your password" value="indatacore" />
+                              <ng-template #passwordErrorTpl let-control>
+                                <ng-container *ngIf="control.hasError('required')">Please confirm your password!</ng-container>
+                                <ng-container *ngIf="control.hasError('confirm')">Password is inconsistent!</ng-container>
+                              </ng-template>
+                            </nz-form-control>     -->
+
+
+                
+                        <div class="col-span-6 sm:col-span-1">
+                            <label for="isadmin" class="block text-sm font-medium text-gray-700">Admin</label>
+                            <select id="isadmin" formControlName="isadmin"  autocomplete="isadmin" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                              <option value=""  selected hidden>Select your option</option>
+                              <option  ngValue=true>Oui</option>
+                              <option  ngValue=false>Non</option>
+          
+                            </select>
+                          </div>
+               
+<!-- 
+                  <div class="col-span-6 sm:col-span-1">
+                    <label for="isactive" class="block text-sm font-medium text-gray-700">Active</label>
+             
+
+                    <nz-switch [(ngModel)]="switchValue" [ngModelOptions]="{standalone: true}" nzCheckedChildren="YES" nzUnCheckedChildren="NO" ></nz-switch>
+
+                  
+                  </div> -->
+
+                
+  
+              </div>
+            </div>
+            <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                <button nz-button nzType="primary" [disabled]="!validateForm.valid">Submit</button>
+
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="md:col-span-1">
+        <!-- <div class="px-4 sm:px-0">
+          <h3 class="text-lg font-medium leading-6 text-gray-900">Ajouter un nouvel utilisateur </h3>
+          <p class="mt-1 text-sm text-gray-600">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div> -->
+      </div>
+    </div>
+  </div>
+  
+  <div class="hidden sm:block" aria-hidden="true">
+    <div class="py-5">
+      <div class="border-t border-gray-200"></div>
+    </div>
+  </div>

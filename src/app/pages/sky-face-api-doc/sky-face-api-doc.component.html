@@ -1,0 +1,65 @@
+<div class="mt-4">
+    <nz-tabset [nzTabPosition]="position">
+        <nz-tab nzTitle="Face matching API Intégration">
+        <p>
+            This is an API REST standard (post method), below input and output parameters :
+        </p>
+        <h4 class="my-6 text-lg font-medium">Input params</h4>
+        <nz-table #basicTable nzShowPagination="false" [nzData]="listOfData">
+            <thead>
+            <tr>
+                <th>Key</th>
+                <th>Type</th>
+                <th>Mandatory</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of basicTable.data">
+                <td>{{ data.key }}</td>
+                <td>{{ data.type }}</td>
+                <td>{{ data.Mandatorye }}</td>
+                <td>
+                {{ data.Description }}
+                </td>
+            </tr>
+            </tbody>
+        </nz-table>
+        <h4 class="my-6 text-lg font-medium">Output params</h4>
+        <nz-table #basicTable1 nzShowPagination="false" [nzData]="listOfData1">
+            <thead>
+            <tr>
+                <th>Key</th>
+                <th>Type / Attribut</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of basicTable1.data">
+                <td>{{ data.key }}</td>
+                <td>{{ data.type }}</td>
+                <td>
+                {{ data.Description }}
+                </td>
+            </tr>
+            </tbody>
+        </nz-table>
+
+        </nz-tab>
+        <nz-tab nzTitle="Exemple face matching API">
+        <pre class="bg-indatacoredark rounded text-indatacoregray mr-4 my-4 pt-3">
+            {{example2}}
+        </pre>
+        <h4 class="my-4">Output :</h4>
+        <pre class="bg-indatacoredark rounded text-indatacoregray mr-4 my-4 pt-3">
+            {{output}}
+        </pre>
+        </nz-tab> -->
+        <nz-tab nzTitle="Annexs">
+        <h4>Send Canvas as binary file</h4>
+        <pre class="bg-indatacoredark rounded text-indatacoregray mr-4 my-4 pt-3">
+            {{annexs}}
+        </pre>
+        </nz-tab>
+    </nz-tabset>
+</div>

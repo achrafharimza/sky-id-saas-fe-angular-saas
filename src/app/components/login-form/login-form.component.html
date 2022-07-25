@@ -1,0 +1,20 @@
+<form [formGroup]="validateForm" class="login-form bg-white p-10" (ngSubmit)="submitForm()">
+  <div class="h-12 mb-4 text-indatacoredark">
+    <img class="h-12 mr-3" src="../../../assets/images/img/skyAnalytics.png" alt="">
+  </div>
+  <span class=" text-indatacorered text-lg">Welcome back</span>
+  <h2 class=" text-3xl font-bold mb-4"><span>Login</span> to your account</h2>
+    <label for="">Email</label>
+        <input type="text" [ngClass]="email.invalid && (email.dirty || email.touched) ? 'border outline-none mt-3 mb-2 py-3 pl-3 border-red-500 bg-gray-50 rounded-md' : 'border outline-none mt-3 mb-4 py-3 pl-3 border-neutral-200 bg-gray-50 rounded-md'" formControlName="email" placeholder="email" />
+        <div *ngIf="email.invalid && (email.dirty || email.touched) " class="text-red-500">
+          <span *ngIf="email.errors.required">email required</span>
+          <span *ngIf="email.errors.pattern">email incorrect</span>
+        </div>
+    <label for="">Password</label>
+        <input type="password" [ngClass]="password.invalid && (password.dirty || password.touched) ? 'border outline-none mt-3 mb-2 py-3 pl-3 border-red-500 bg-gray-50 rounded-md' : 'border outline-none mt-3 mb-4 py-3 pl-3 border-neutral-200 bg-gray-50 rounded-md'" formControlName="password" placeholder="Password" />
+        <div *ngIf="password.invalid && (password.dirty || password.touched) " class="text-red-500">
+          <span *ngIf="password.errors.required || password.errors.onlyContainSpace">password required</span>
+        </div>
+  <button type="submit" class="text-center mt-2 w-full py-3 bg-indatacoredark hover:bg-indatacorered rounded-md text-white">Log in</button>
+
+</form>

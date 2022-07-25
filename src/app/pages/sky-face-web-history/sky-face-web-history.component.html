@@ -1,0 +1,95 @@
+<div class="history p-2 bg-white">
+    <!-- <h2>Sky Face Analysis Historys</h2> -->
+    <nz-table #basicTable [nzData]="Skaylist" 
+    nzShowPagination="false">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>User</th>
+          <th>Client</th>
+          <th>Result</th>
+          <th>Action</th>
+        
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of basicTable.data; let i = index">
+          <!-- sky_id.output.similarity -->
+          <td>{{ data.createdDate  | date:'yyyy-MM-dd HH:mm'}}</td>
+          
+          
+          <td>{{ data.createdby }}</td>
+          <td>{{ data.result}}</td>
+
+
+
+
+          <td>
+            <span *ngIf='data.classresult=="spoof"'  class="bg-red-100 text-red-600 px-4 py-2 rounded">Spoof</span>
+          <span *ngIf='data.classresult=="Real"' class=" bg-green-200 text-green-800 px-4 py-2 rounded">Real</span>
+          <span *ngIf='data.classresult!="Real" && data.classresult!="spoof"' class="bg-yellow-100 text-yellow-600 px-4 py-2 rounded">{{data.classresult}}</span>
+          </td>
+
+
+
+<!-- 
+          <td [ngSwitch]="data.status">
+            <span *ngSwitchCase="'active'" class="badge badge-success p-2 tex-white"> active</span>
+            <span *ngSwitchCase="'inactive'"
+                class="badge badge-danger p-2 tex-white">inactive</span>
+            <span *ngSwitchCase="'inconnu'" class="badge badge-warning p-2 tex-white">inconnu</span>
+
+
+        </td> -->
+
+
+
+
+
+
+          <td>
+            <div>
+  
+              <div>
+                <button nz-button nzType="primary" (click)="showModalMiddle(data)" >
+                  <i nz-icon nzType="eye" nzTheme="outline"></i>
+                </button>
+              </div>
+              
+            </div>
+          </td>
+        </tr>
+      </tbody>
+      <nz-pagination *ngIf="Skaylist" [(nzPageIndex)]="page" nzPage [(nzPageSize)]="limit" (nzPageIndexChange)="nextPage($event)"  [nzTotal]="total"></nz-pagination>
+    </nz-table>
+  </div>
+  
+
+  
+    <nz-modal
+      [(nzVisible)]="isVisibleMiddle"
+      nzClosable="false"
+      nzCentered
+      (nzOnCancel)="handleCancelMiddle()" 
+      
+    >
+    <div *nzModalTitle >
+    
+  <nz-alert *ngIf='modaldata.classresult=="Real"' [nzMessage]="'Image detected as '+ modaldata.classresult+' Type'" nzType="success" nzShowIcon></nz-alert>
+  <nz-alert *ngIf='modaldata.classresult=="spoof"' [nzMessage]="'Image detected as '+ modaldata.classresult+' Type'" nzType="error" nzShowIcon></nz-alert>
+  <nz-alert *ngIf='modaldata.classresult!="Real" && modaldata.classresult!="spoof"' [nzMessage]="'Image detected as '+ modaldata.classresult+' Type'" nzType="warning" nzShowIcon></nz-alert>
+
+  
+
+    </div>
+      <ng-container *nzModalContent >
+        <div  style="DISPLAY: flex;justify-content: center;">
+        <img  [src]="url + 'apiocr/file/' + modaldata.doccumentId" class="content__image" alt="" srcset="" style="max-width: 50%;">
+       
+    </div>
+      </ng-container>
+      <div *nzModalFooter>
+        
+        <button nz-button nzType="primary" (click)="handleCancelMiddle()"  >Cancel</button>
+      </div>
+    </nz-modal>

@@ -1,0 +1,55 @@
+<div class="history">
+  <div>
+    <!-- <h2>Sky Document Analysis History</h2> -->
+
+    <!-- <form class="flex items-center">
+      <input #key type="search" class="outline-none bg-mainsearch text-gray-600 p-3 rounded-l " placeholder="Search">
+      <button (click)="doSearch(key.value)">
+        <span class="material-symbols-outlined bg-blue-500 p-3 rounded-r text-white">
+          search
+        </span>
+      </button>
+    
+    </form> -->
+  </div>
+  
+  <!-- (nzCurrentPageDataChange)="onCurrentPageDataChange($event)" -->
+  <nz-table #basicTable 
+    nzShowPagination="false"
+   [nzData]="history">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>User</th>
+        <th>Client</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data; let i = index">
+       
+
+        <td>{{ data.createdDate  | date:'yyyy-MM-dd HH:mm'}}</td>
+        
+        <td>{{ data.createdby }}</td>
+        <td>{{ data.ocrInput.request_data}}</td>
+        <td>
+          <span *ngIf="data.statusCode" class=" bg-green-200 text-green-800 px-4 py-2 rounded">OK</span>
+          <span *ngIf="!data.statusCode" class="bg-red-100 text-red-600 px-4 py-2 rounded">NOT OK</span>
+        </td>
+        <td>
+          <div>
+
+            <div>
+              <button nz-button nzType="primary" (click)="createModal(i)">
+                <i nz-icon nzType="eye" nzTheme="outline"></i>
+              </button>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+    <nz-pagination [(nzPageIndex)]="page" [(nzPageSize)]="limit" (nzPageIndexChange)="nextPage($event)"  [nzTotal]="total"></nz-pagination>
+  </nz-table>
+</div>

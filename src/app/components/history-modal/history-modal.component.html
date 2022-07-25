@@ -1,0 +1,42 @@
+<div class="content">
+  <div class="imgs-container">
+  <img *ngIf="history" [src]="url + 'apiocr/file/' + history.ocrInput.document_id" class="content__image" alt="" srcset="">
+  <img *ngIf="sky_id" [src]="url + 'apiocr/file/' + sky_id.skyIdInput.doccument_id" class="content__image" alt="" srcset="" >
+  <img *ngIf="sky_id" [src]="url + 'apiocr/file/' + sky_id.skyIdInput.selfie_id" class="content__image mt-2" alt="" srcset="" >
+</div>
+  <div class="json-container">
+    <span style="DISPLAY: FLEX;justify-content: space-between;">Result : 
+      <div  *ngIf="sky_id" [ngSwitch]="sky_id.output.similarity">
+      
+
+        <nz-tag  *ngSwitchCase="'0'" nzColor="error">Not Matched</nz-tag>
+        <nz-tag  *ngSwitchCase="'1'" nzColor="success">Matched</nz-tag>
+
+
+      <!-- <span  *ngSwitchCase="'0'" class="bg-red-100 text-red-800 py-1 px-2 rounded-full font-medium"> not matched</span> 
+      <span *ngSwitchCase="'1'" class="bg-green-100 text-green-800 py-1 px-2 rounded-full font-medium"> matched</span>  -->
+
+    </div>
+
+<div>
+  <nz-progress *ngIf="sky_id" [nzPercent]="distance" [nzSteps]="5" nzStrokeColor="#1890ff"></nz-progress>
+
+</div>
+    </span><br>
+<pre *ngIf="history" class="pre-json">
+  <code>
+    {{history.output | json}}
+  </code>
+</pre>
+
+<pre *ngIf="sky_id">
+  <code>
+    {{sky_id.output.multi_response_data | json}}
+  </code>
+</pre>
+</div>
+<!-- <markdown>
+  {{history.output.response_data | json}}
+</markdown> -->
+
+</div>

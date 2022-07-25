@@ -1,0 +1,17 @@
+<nz-layout class="inner-layout">
+  <nz-sider nzWidth="200px" nzTheme="light">
+    <ul nz-menu nzMode="inline" class="sider-menu">
+      <li nz-menu-item routerLink="skyidhistory">Sky IDentification</li>
+      <li  nz-menu-item ><a routerLink="skydochistory">Sky Document Analysis</a></li>
+      <li nz-menu-item>Sky Face Analysis</li>
+      <li nz-menu-item>Sky OnBoarding</li>
+      <li nz-menu-item>Sky Document Compilance</li>
+      <li nz-menu-item>Sky Bank Check</li>
+      <li nz-menu-item>Sky Signature</li>
+    </ul>
+  </nz-sider>
+  <nz-content class="inner-content">
+    <router-outlet></router-outlet>
+    <!-- <app-sky-identification></app-sky-identification> -->
+  </nz-content>
+</nz-layout>

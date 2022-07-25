@@ -1,0 +1,63 @@
+<div class="history p-2 bg-white">
+    <!-- <h2>Sky Face Analysis Historys</h2> -->
+    <nz-table #basicTable [nzData]="listuser" 
+    nzShowPagination="false">
+      <thead>
+        <tr>
+          <th>Last Name</th>
+          <th>First Name</th>
+          <th>Email</th>
+          <th>Client</th>
+          <th>Admin</th>
+          <th>Active</th>
+          <th>Action</th>
+<!--           
+    id?: string;
+    nom?: string;
+    prenom?: string;
+    email?: string;
+    isadmin?: boolean;
+    isactive?: boolean;
+    password?: string;
+    clientID?: Client; -->
+        
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of basicTable.data; let i = index">
+          <!-- sky_id.output.similarity -->
+         
+          
+          
+          <td>{{ data.nom }}</td>
+          <td>{{ data.prenom}}</td>
+          <td>{{ data.email }}</td>
+          <td>{{ data.clientID.nom}}</td>
+          <td>{{ data.isadmin }}</td>
+          <td>{{ data.isactive}}</td>
+
+
+
+
+          <!-- <td>
+            <span *ngIf='data.classresult=="spoof"'  class="bg-red-100 text-red-600 px-4 py-2 rounded">Spoof</span>
+          <span *ngIf='data.classresult=="Real"' class=" bg-green-200 text-green-800 px-4 py-2 rounded">Real</span>
+          <span *ngIf='data.classresult!="Real" && data.classresult!="spoof"' class="bg-yellow-100 text-yellow-600 px-4 py-2 rounded">{{data.classresult}}</span>
+          </td> -->
+
+          <td>
+            <div>
+  
+              <div>
+                <button nz-button nzType="primary"  nzDanger (click)="deleteuser(data.id)">
+                    <i nz-icon nzType="delete" nzTheme="outline"></i>
+                </button>
+              </div>
+              
+            </div>
+          </td>
+        </tr>
+      </tbody>
+      <nz-pagination *ngIf="listuser" [(nzPageIndex)]="page" nzPage [(nzPageSize)]="limit" (nzPageIndexChange)="nextPage($event)"  [nzTotal]="total"></nz-pagination>
+    </nz-table>
+  </div>
